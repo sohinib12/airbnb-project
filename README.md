@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /api/session
+  * URL: /api/user/current
   * Body: none
 
 * Successful Response when there is a logged in user

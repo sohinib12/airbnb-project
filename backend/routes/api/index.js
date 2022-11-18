@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-// router.post('/test', function(req, res) {
-//     res.json({ requestBody: req.body });
-//   });
+
+router.post('/test', function(req, res) {
+    res.json({ requestBody: req.body });
+  });
 
 // GET /api/set-token-cookie
 // const { setTokenCookie } = require('../../utils/auth.js');

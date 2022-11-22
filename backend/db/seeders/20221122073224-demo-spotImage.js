@@ -1,18 +1,16 @@
 'use strict';
 
+// const { mapFinderOptions } = require('sequelize/types/utils');
+
 /** @type {import('sequelize-cli').Migration} */
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+options.tableName = "SpotImages"
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
-     await queryInterface.bulkInsert('SpotImages', [
+     await queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         url: 'url',
@@ -32,12 +30,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-     await queryInterface.bulkDelete('SpotImages', null, {});
+     await queryInterface.bulkDelete(options);
   }
 };

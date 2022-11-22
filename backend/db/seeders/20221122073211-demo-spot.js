@@ -8,9 +8,8 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    // options.tableName = 'Spots';
-    options.tableName = `${process.env.SCHEMA}.Spots`
-   return queryInterface.bulkInsert(options, [
+    options.tableName = 'Spots';
+   return queryInterface.bulkInsert("Spots", [
     {
       ownerId: 1,
         address: "200 walnut ave",

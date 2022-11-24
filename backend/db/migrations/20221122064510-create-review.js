@@ -19,14 +19,16 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Spots'
-        }
+        },
+        onDelete:'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Users'
-        }
+        },
+        onDelete:'CASCADE'
       },
       review: {
         type: Sequelize.TEXT,
@@ -39,12 +41,12 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: new Date()
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: new Date()
       }
     });
   },

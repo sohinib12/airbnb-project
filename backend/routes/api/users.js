@@ -31,12 +31,31 @@ router.post(
   validateSignup,
   async (req, res) => {
     const { email, password, username, firstName, lastName } = req.body;
-    const user = await User.signup({ email, username, password, firstName, lastName });
+    console.log(`signup before`)
+    const user = await User.signup({
+      email, username, password, firstName, lastName
+    });
+    console.log(`signup after`)
+    const existingUser = await User.findAll({
+      where: {
+        email: email,
+        username: username,
+      }
+    })
+    if(existingUser){
+      const err = new Error('User already exists');
+      err.status = 403;
+      err.message = "User with that username already exists";
+    }
 
-    await setTokenCookie(res, user);
+
+    let token = await setTokenCookie(res, user);
+    const userData = user.toJSON();
+    // console.log(userData)
+    userData.token = ''
 
     return res.json({
-      user,
+      user: userData
     });
   }
 );

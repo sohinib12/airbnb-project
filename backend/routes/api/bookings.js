@@ -70,6 +70,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
       statusCode: 404,
     });
   }
+  // Booking must belong to the current user
   let bookingCopy = booking.toJSON();
   if (bookingCopy.userId !== req.user.id) {
     return res.status(403).json({
@@ -114,13 +115,22 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
 });
 
 // Delete a Booking
-router.delete("/:bookingId", async (req, res, next) => {
+router.delete("/:bookingId", requireAuth, async (req, res, next) => {
   const booking = await Booking.findByPk(req.params.bookingId);
   if (!booking) {
     res.status(404);
     return res.json({
       message: "Booking couldn't be found",
       statusCode: 404,
+    });
+  }
+  // Booking must belong to the current user
+  let currBooking = booking.toJSON();
+  if (req.user.id !== currBooking.userId) {
+    res.status(403);
+    return res.json({
+      message: "Forbidden",
+      statusCode: 403,
     });
   }
   await booking.destroy();

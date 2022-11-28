@@ -1,7 +1,6 @@
 const express = require("express");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { requireAuth } = require("../../utils/auth");
-
 const {
   User,
   Spot,
@@ -58,7 +57,6 @@ const validateQuery = [
     .exists({ checkFalsy: true })
     .isFloat({ min: 0 })
     .withMessage("Maximum price must be greater than or equal to 0"),
-
   handleValidationErrors,
 ];
 router.get("/", validateQuery, async (req, res, next) => {
@@ -140,7 +138,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
       [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
       [sequelize.col("SpotImages.url"), "previewImage"],
     ],
-    group: ["Reviews.stars", "SpotImages.url"],
+    group: ["Reviews.stars", "SpotImages.url", "Spot.id"],
   });
   return res.json({ Spots: currentUserSpots });
 });
@@ -210,7 +208,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
 });
 
 // Get all Bookings for a Spot based on the Spot's id
-router.get("/:spotId/bookings", requireAuth ,async (req, res, next) => {
+router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
   const spotId = req.params.spotId;
   const userId = req.user.id;
   // console.log(spotId)
@@ -223,7 +221,6 @@ router.get("/:spotId/bookings", requireAuth ,async (req, res, next) => {
     });
   }
 
-  
   let bookings = await Booking.findAll({
     where: { spotId: spotId },
     include: [
@@ -241,6 +238,7 @@ router.get("/:spotId/bookings", requireAuth ,async (req, res, next) => {
       },
     ],
   });
+  // If you ARE NOT the owner of the spot
   bookings = bookings.map((booking) => booking.toJSON());
   bookings.forEach((booking) => {
     if (booking.userId !== userId) {
@@ -336,7 +334,7 @@ router.post(
     }
     let spotCopy = spot.toJSON();
     // console.log(spotCopy)
-
+    // Review from the current user already exists for the Spot
     spotCopy.Reviews.forEach((review) => {
       if (review.userId === userId) {
         return res.status(403).json({
@@ -370,7 +368,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
       statusCode: 404,
     });
   }
-
+  // Spot must NOT belong to the current user
   let spotCopy = spot.toJSON();
   if (spotCopy.ownerId !== req.user.id) {
     return res.status(403).json({
@@ -433,6 +431,7 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
   const existingSpot = await Spot.findByPk(req.params.spotId);
   // console.log(existingSpot)
   if (existingSpot !== null) {
+    // Spot must belong to the current user
     let spot = existingSpot.toJSON();
     if (req.user.id !== spot.ownerId) {
       res.status(403);
@@ -482,6 +481,7 @@ router.put("/:spotId", requireAuth, validateSpot, async (req, res, next) => {
       statusCode: 404,
     });
   }
+  // Spot must belong to the current user
   let currSpot = spot.toJSON();
   if (req.user.id !== currSpot.ownerId) {
     res.status(403);
@@ -509,13 +509,22 @@ router.put("/:spotId", requireAuth, validateSpot, async (req, res, next) => {
 });
 
 // Delete a Spot
-router.delete("/:spotId", async (req, res, next) => {
+router.delete("/:spotId", requireAuth, async (req, res, next) => {
   const spot = await Spot.findByPk(req.params.spotId);
   if (!spot) {
     res.status(404);
     return res.json({
       message: "Spot couldn't be found",
       statusCode: 404,
+    });
+  }
+  // Spot must belong to the current user
+  let currSpot = spot.toJSON();
+  if (req.user.id !== currSpot.ownerId) {
+    res.status(403);
+    return res.json({
+      message: "Forbidden",
+      statusCode: 403,
     });
   }
   await spot.destroy();

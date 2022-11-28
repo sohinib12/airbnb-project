@@ -41,7 +41,6 @@ router.delete("/:imageId", requireAuth, async (req, res, next) => {
       statusCode: 403,
     });
   }
-
   await spotImage.destroy();
   res.status(200);
   return res.json({

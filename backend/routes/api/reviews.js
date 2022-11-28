@@ -75,8 +75,8 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       statusCode: 404,
     });
   }
+  // Review must belong to the current user
   let reviewCopy = review.toJSON();
-
   if (reviewCopy.userId !== req.user.id) {
     return res.status(403).json({
       message: "Forbidden",
@@ -94,6 +94,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
       [sequelize.fn("COUNT", sequelize.col("ReviewImage.url")), "imageCount"],
     ],
   });
+  // maximum of 10 images per resource
   count = count.toJSON();
   if (count.imageCount > 10) {
     return res.status(403).json({
@@ -133,7 +134,7 @@ router.put(
         statusCode: 404,
       });
     }
-
+    // Review must belong to the current user
     let reviewCopy = updatedReview.toJSON();
     if (reviewCopy.userId !== req.user.id) {
       return res.status(403).json({
@@ -150,13 +151,22 @@ router.put(
 );
 
 // Delete a Review
-router.delete("/:reviewId", async (req, res, next) => {
+router.delete("/:reviewId", requireAuth, async (req, res, next) => {
   const review = await Review.findByPk(req.params.reviewId);
   if (!review) {
     res.status(404);
     return res.json({
       message: "Review couldn't be found",
       statusCode: 404,
+    });
+  }
+  // Review must belong to the current user
+  let currReview = review.toJSON();
+  if (req.user.id !== currReview.userId) {
+    res.status(403);
+    return res.json({
+      message: "Forbidden",
+      statusCode: 403,
     });
   }
   await review.destroy();

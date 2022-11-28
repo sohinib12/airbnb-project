@@ -370,7 +370,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
   }
   // Spot must NOT belong to the current user
   let spotCopy = spot.toJSON();
-  if (spotCopy.ownerId !== req.user.id) {
+  if (spotCopy.ownerId === req.user.id) {
     return res.status(403).json({
       message: "Forbidden",
       statusCode: 403,

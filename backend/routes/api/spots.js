@@ -78,11 +78,24 @@ router.get("/", validateQuery, async (req, res, next) => {
   }
 
   let allSpots = await Spot.findAll({
-    include: [
-      {
-        model: SpotImage,
-      },
-    ],
+    include: [{ model: SpotImage }, { model: Review }],
+    // attributes: [
+    //   "id",
+    //   "ownerId",
+    //   "address",
+    //   "city",
+    //   "state",
+    //   "country",
+    //   "lat",
+    //   "lng",
+    //   "name",
+    //   "description",
+    //   "price",
+    //   "createdAt",
+    //   "updatedAt",
+    //   [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgRating"],
+    // ],
+    // group: ["Reviews.stars", "SpotImages.url", "Spot.id"],
     ...pagination,
   });
 
@@ -94,16 +107,21 @@ router.get("/", validateQuery, async (req, res, next) => {
   spotList.forEach((spot) => {
     //copy SpotImages
     const spotImages = spot.SpotImages;
+    const reviews = spot.Reviews;
 
     // delete SpotImages because not needed
     delete spot.SpotImages;
-
+    delete spot.Reviews;
     //get only image which has preview =true
     spotImages.forEach((spotImage) => {
       if (spotImage.preview) {
         spot.previewImage = spotImage.url;
       }
     });
+
+    const totalStars =
+      reviews.reduce((prev, next) => prev + next.stars, 0) || 0;
+    spot.avgRating = reviews.length ? totalStars / reviews.length : 0;
   });
   if (page && size) {
     return res.json({ Spots: spotList, page, size });
@@ -145,7 +163,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
 // Get details of a Spot from an id
 router.get("/:spotId", async (req, res, next) => {
-  const spots = await Spot.findAll({
+  const spots = await Spot.findOne({
     where: { id: req.params.spotId },
     attributes: {
       include: [
@@ -167,6 +185,7 @@ router.get("/:spotId", async (req, res, next) => {
       statusCode: 404,
     });
   }
+  console.log(spots);
   return res.json(spots);
 });
 

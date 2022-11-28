@@ -158,7 +158,7 @@ router.get("/:spotId", async (req, res, next) => {
       { model: SpotImage, attributes: ["id", "url", "preview"] },
       { model: User, attributes: ["id", "firstName", "lastName"] },
     ],
-    group: ["Reviews.id", "SpotImages.id", "User.id"],
+    group: ["Reviews.id", "SpotImages.id", "User.id", "Spot.id"],
   });
   if (spots.length === 0) {
     res.status(404);

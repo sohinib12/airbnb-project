@@ -34,11 +34,11 @@ router.get("/current", requireAuth, async (req, res) => {
         attributes: {
           exclude: ["description", "createdAt", "updatedAt"],
         },
-        group: ["SpotImage.id"],
+        group: ["SpotImages.id"],
       },
       { model: ReviewImage, attributes: ["id", "url"] },
     ],
-    group: ["User.id", "Spot.id", "ReviewImages.id", "Review.id", "SpotImage.id"],
+    group: ["User.id", "Spot.id", "ReviewImages.id", "Review.id", "SpotImages.id"],
   });
 
   let reviewList = [];

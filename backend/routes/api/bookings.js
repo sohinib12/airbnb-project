@@ -89,14 +89,16 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
       },
     });
   }
-  if (new Date() > new Date(endDate)) {
+ // get end date from current booking and compare if it is past
+
+  if (new Date() > new Date(booking.endDate)) {
     res.status(403);
     return res.json({
       message: "Past bookings can't be modified",
       statusCode: 403,
     });
   }
-  // check this with TA
+
   // Booking conflict
   if(new Date(startDate) >= booking.startDate && new Date(startDate) <= booking.endDate ||
       (new Date(endDate) >= booking.startDate && new Date(endDate) <= booking.endDate)){

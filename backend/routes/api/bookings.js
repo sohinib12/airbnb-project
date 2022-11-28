@@ -97,18 +97,19 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     });
   }
   // check this with TA
-  // if(new Date(startDate) >= booking.startDate && new Date(startDate) <= booking.endDate ||
-  //     (new Date(endDate) >= booking.startDate && new Date(endDate) <= booking.endDate)){
-  //         res.status(403)
-  //         return res.json({
-  //             "message": "Sorry, this spot is already booked for the specified dates",
-  //             "statusCode": 403,
-  //             "errors": {
-  //                startDate: "Start date conflicts with an existing booking",
-  //                 endDate: "End date conflicts with an existing booking"
-  //             }
-  //         })
-  //     }
+  // Booking conflict
+  if(new Date(startDate) >= booking.startDate && new Date(startDate) <= booking.endDate ||
+      (new Date(endDate) >= booking.startDate && new Date(endDate) <= booking.endDate)){
+          res.status(403)
+          return res.json({
+              "message": "Sorry, this spot is already booked for the specified dates",
+              "statusCode": 403,
+              "errors": {
+                 startDate: "Start date conflicts with an existing booking",
+                  endDate: "End date conflicts with an existing booking"
+              }
+          })
+      }
   booking.set({ startDate, endDate });
   await booking.save();
   return res.json(booking);

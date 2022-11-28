@@ -16,53 +16,43 @@ const validateLogin = [
   handleValidationErrors
 ];
 
-router.post(
-  '/',
-  validateLogin,
-  async (req, res, next) => {
+//log in
+router.post('/',validateLogin,async (req, res, next) => {
     const { credential, password } = req.body;
 
-    const user = await User.login({ credential, password });
+    let user = await User.login({ credential, password });
 
     if (!user) {
-      const err = new Error('Login failed');
+      const err = new Error("Invalid credentials");
       err.status = 401;
       err.message = "Invalid credentials";
-      // err.errors = ['The provided credentials were invalid.'];
+      // err.errors = ["Invalid credentials"];
       return next(err);
     }
 
     const token = await setTokenCookie(res, user);
 
+    user = user.toJSON();
+    user.token = ''
     return res.json({
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        token: token
+        user: user
     });
   }
 );
 
   // Log out
-router.delete(
-    '/',
-    (_req, res) => {
+router.delete('/',(_req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
     }
   );
 
   // Restore session user
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
+router.get('/',restoreUser,(req, res) => {
       const { user } = req;
       if (user) {
-        user.toSafeObject()
         return res.json({
-          user: user
+          user: user.toSafeObject()
         });
       } else return res.json({ user: null});
     }

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import "./LoginForm.css";
+import "./DemoUser.css";
 
-function LoginFormModal() {
+function DemoUserModal() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [credential, setCredential] = useState("Demo-lition");
+  const [password, setPassword] = useState("password");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -59,4 +59,4 @@ function LoginFormModal() {
   );
 }
 
-export default LoginFormModal;
+export default DemoUserModal;

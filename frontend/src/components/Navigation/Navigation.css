@@ -1,0 +1,19 @@
+.hidden {
+    display: none;
+}
+.profile-btn {
+    box-sizing: border-box;
+    border-radius: 21px;
+    border: 1px solid #cccccc;
+    height: 32px;
+    width: 58px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #ffffff;
+    cursor: pointer;
+    align-items: center;
+}
+.fas fa-user-circle {
+    margin-top: 0px;
+    padding-left: 18px;
+}

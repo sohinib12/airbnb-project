@@ -17,3 +17,34 @@
     margin-top: 0px;
     padding-left: 18px;
 }
+.nav-root {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(231, 230, 230);
+    padding: 8px;
+}
+.nav-one{
+    flex-grow: 1;
+}
+
+.nav-two{
+    flex-grow: 1;
+}
+
+.nav-three{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.nav-home-img{
+    width: 40px;
+    height: 40px;
+}
+.profile-dropdown{
+    cursor: pointer;
+}
+
+.profile-dropdown hidden{
+    display: none;
+}

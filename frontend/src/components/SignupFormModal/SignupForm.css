@@ -11,3 +11,22 @@
     color: whitesmoke;
     cursor: pointer;
 }
+.signUp-container{
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 60vh;
+    padding: 0px 16px 16px 16px;
+    overflow: auto;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+}
+input {
+    width: 48%;
+    height: 40px;
+    border-radius: 8px;
+}

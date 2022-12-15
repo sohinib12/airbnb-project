@@ -74,7 +74,7 @@ router.post("/", validateSignup, async (req, res) => {
   // console.log(`user`)
   delete user.createdAt;
   delete user.updatedAt;
-  user.token = "token";
+  user.token = token;
 
   return res.json({
     user: user,

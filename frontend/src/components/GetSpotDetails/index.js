@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getSpotDetailsThunk, deleteSpotThunk } from "../../store/spot";
 import "./GetSpotDetails.css";
-import reviewsReducer, { getAllReviewsThunk } from "../../store/review";
+import { getAllReviewsThunk } from "../../store/review";
+import Reviews from "../Reviews/index";
 
 export default function SpotDetails() {
   const { spotId } = useParams();
@@ -12,8 +13,8 @@ export default function SpotDetails() {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(getSpotDetailsThunk(spotId))
-    dispatch(getAllReviewsThunk(spotId))
+    dispatch(getSpotDetailsThunk(spotId));
+    dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
   const handleDelete = (e) => {
@@ -27,14 +28,14 @@ export default function SpotDetails() {
   };
   const displayImages = spot.SpotImages && spot.SpotImages.length > 0;
 
-  if(!spot.id) return null;
+  if (!spot.id) return null;
   return (
     <div className="spot-details">
       <div className="spot-name">{spot.name}</div>
       <div className="address-spot">
         <div className="address-details">
           <div id="rating-above-picture">
-            <i class="fas fa-star"></i> {spot.avgRating}
+            <i class="fas fa-star"></i> {spot.avgStarRating}
           </div>
           <div>{spot.reviews}</div>
           <div>{spot.address}</div>
@@ -82,6 +83,10 @@ export default function SpotDetails() {
         </div>
       )}
       <br />
+      <div>
+        <h3>Reviews</h3>
+        <Reviews spotId={spotId} />
+      </div>
     </div>
   );
 }

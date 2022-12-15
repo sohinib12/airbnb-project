@@ -15,6 +15,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  // write Footer
   return (
     <>
       <Navigation isLoaded={isLoaded} />

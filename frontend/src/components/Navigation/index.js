@@ -13,10 +13,11 @@ function Navigation({ isLoaded }) {
         {/* <i className="fa-thin fa-mountain-city"></i> */}
         <NavLink exact to="/">
           <img className="nav-home-img"
-            src="https://img.icons8.com/color/2x/airbnb.png"
+            src={process.env.PUBLIC_URL + '/cabin.png'}
             alt="Home"
           ></img>
         </NavLink>
+        <span className="title">Yawnbnb</span>
       </div>
       <div className="nav-two"></div>
       <div className="nav-three">

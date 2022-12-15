@@ -5,11 +5,12 @@
     justify-content: center;
     align-items: center;
     gap: 20px 40px;
+
 }
 .spot-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     padding: 16px;
     box-shadow: 10px 5px 5px #ded7d7;
     margin-top: 16px;
@@ -18,10 +19,15 @@
     height: 25vh;
     width: 25vw;
 }
+.image{
+    width: 25vw;
+    height: 25vh;
+}
 
 .spot-info-container{
     display: flex;
     flex-direction: row;
+    padding: 8px;
 }
 
 .spot-info {

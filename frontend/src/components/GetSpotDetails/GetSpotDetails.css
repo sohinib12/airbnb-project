@@ -1,0 +1,45 @@
+.image-div-one-spot{
+    width: 50vw;
+    height: 50vh;
+}
+.spot-secondary-images-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    height: 50vh;
+}
+
+.spot-images{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 50vh;
+    margin-top: 12px;
+}
+
+.spot-secondary-image{
+    width: 20vw;
+    height: 25vh;
+}
+.spot-details{
+    padding: 0px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.spot-name{
+    font-size: 2em;
+    font-weight: 400;
+    margin: 8px;
+}
+.address-spot{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.address-details{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

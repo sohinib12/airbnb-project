@@ -1,0 +1,43 @@
+#host-forms{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+}
+.spot-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.edit-spot-root{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+input {
+    margin: 15px;
+    margin-bottom: 10pxf;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    font-size: 18px;
+    /* margin: 5px; */
+}
+
+#cancel-form{
+    border-radius: 10px;
+    background-color: white;
+}
+h1 {
+    text-align: center;
+}

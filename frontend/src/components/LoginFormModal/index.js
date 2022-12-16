@@ -36,7 +36,7 @@ function LoginFormModal() {
               ))}
             </ul>
           )}
-          <div>
+          <div className="login-input-container">
             <input
               placeholder="Username or Email"
               type="text"

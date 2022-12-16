@@ -19,6 +19,10 @@ export default function CreateSpot() {
   const [errorValidations, setErrorValidations] = useState([]);
   const user = useSelector((state) => state?.session?.user);
 
+  if (!user) {
+    alert("log in to create a spot!");
+    // history.push("/spots")
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,11 +35,12 @@ export default function CreateSpot() {
       country,
       price,
       description,
-      lat:112.2378,
-      lng:101.9872
+      lat: 112.2378,
+      lng: 101.9872,
     };
     let createdSpot = await dispatch(createSpotThunk(newSpot));
 
+    console.log(createdSpot);
     if (createdSpot && imageUrl) {
       const image = {
         url: imageUrl,
@@ -63,102 +68,110 @@ export default function CreateSpot() {
   }, [name, address, city, state, country, price, description]);
 
   return (
-    <div className="create-spot-root">
-      <div className="welcome-container">
-        <h1>Create your place</h1>
-      </div>
-      <div id="host-forms">
-        <ul>
-          {errorValidations.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
-        <form className="spot-form" onSubmit={handleSubmit}>
-          <label>
-            <input
-              maxLength="25"
-              type="text"
-              placeholder="Spot Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Address"
-              maxLength="50"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="City"
-              maxLength="50"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Country"
-              maxLength="50"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Image url"
-              value={imageUrl}
-              onChange={(e) => {
-                e.preventDefault();
-                setImageUrl(e.target.value);
-              }}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Description"
-              maxLength="100"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
-          <div className="form-actions">
-            <button
-              className="submit"
-              disabled={errorValidations.length > 0}
-              type="submit"
-            >
-              Create New Spot
-            </button>
-            <Link id="cancel-form" exact to="/">
-              Cancel
-            </Link>
-          </div>
-        </form>
+    <div style={{ width: "600px" }}>
+      <h1 className="welcome-container">Create your place</h1>
+      <div className="create-spot-root">
+        <div id="host-forms">
+          <ul>
+            {errorValidations.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+          <form className="spot-form" onSubmit={handleSubmit}>
+            <label>
+              <input
+                maxLength="25"
+                type="text"
+                placeholder="Spot Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="Address"
+                maxLength="50"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="City"
+                maxLength="50"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="State"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="Country"
+                maxLength="50"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="Image url"
+                value={imageUrl}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setImageUrl(e.target.value);
+                }}
+                className="create-spot-input"
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                placeholder="Description"
+                maxLength="100"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="create-spot-input"
+              />
+            </label>
+            <div className="form-actions">
+              <button
+                className="submit"
+                disabled={errorValidations.length > 0}
+                type="submit"
+              >
+                Create New Spot
+              </button>
+              <Link id="cancel-form" exact to="/">
+                Cancel
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export default function Reviews({ spotId }) {
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(1);
   const [errorValidations, setErrorValidations] = useState([]);
+  const user = useSelector((state) => state.session);
 
   useEffect(() => {
     dispatch(getAllReviewsThunk(spotId));
@@ -60,12 +61,14 @@ export default function Reviews({ spotId }) {
                   ))}
                 </div>
               </div>
-              <div>
-                <button onClick={(e) => handleEdit(e)}>Edit</button>
-                <button onClick={(e) => handleDelete(e, review.id)}>
-                  Delete
-                </button>
-              </div>
+              {user.user?.id === review.userId && (
+                <div>
+                  {/* <button onClick={(e) => handleEdit(e)}>Edit</button> */}
+                  <button onClick={(e) => handleDelete(e, review.id)}>
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
           ))}
       </div>

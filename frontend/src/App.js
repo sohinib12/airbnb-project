@@ -7,6 +7,7 @@ import AllSpots from "./components/Spots";
 import CreateSpot from "./components/CreateSpot/createSpot";
 import GetSpotDetails from "./components/GetSpotDetails/index";
 import EditSpot from "./components/EditSpot/editSpot";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,28 +18,33 @@ function App() {
 
   // write Footer
   return (
-    <>
+    <div className="container-page">
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <AllSpots />
-          </Route>
-          <Route path="/spots/create">
-            <CreateSpot />
-          </Route>
-          <Route path="/spots/:spotId/edit">
-            <EditSpot />
-          </Route>
-          <Route  path="/spots/:spotId">
-            <GetSpotDetails />
-          </Route>
-          <Route  path="/spots">
-            <AllSpots />
-          </Route>
-        </Switch>
-      )}
-    </>
+      <main id="content">
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <AllSpots />
+            </Route>
+            <Route path="/spots/create">
+              <CreateSpot />
+            </Route>
+            <Route path="/spots/:spotId/edit">
+              <EditSpot />
+            </Route>
+            <Route path="/spots/:spotId">
+              <GetSpotDetails />
+            </Route>
+            <Route path="/spots">
+              <AllSpots />
+            </Route>
+            <Route>
+              <PageNotFound />
+            </Route>
+          </Switch>
+        )}
+      </main>
+    </div>
   );
 }
 

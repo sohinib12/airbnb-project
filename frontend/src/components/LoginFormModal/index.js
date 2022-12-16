@@ -24,36 +24,40 @@ function LoginFormModal() {
 
   return (
     <div className="login-container">
-      <h1>Log In</h1>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          <input
-            placeholder="Username or Email"
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+      <h2 style={{ textAlign: "center" }}>Log In</h2>
+      <div className="border-div"></div>
+      <div style={{ margin: " 0 auto", padding: "0 20px" }}>
+        <h1 className="welcome-login">Welcome to Yawnbnb</h1>
+        <form className="form-container" onSubmit={handleSubmit}>
+          {errors.length > 0 && (
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+          )}
+          <div>
+            <input
+              placeholder="Username or Email"
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
 
-        <button className="login-btn" type="submit">
-          Log In
-        </button>
-      </form>
+            <input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="login-btn" type="submit">
+            Log In
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

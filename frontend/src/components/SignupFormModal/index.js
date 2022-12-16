@@ -41,73 +41,77 @@ function SignupFormModal() {
 
   return (
     <div className="signUp-container">
-      <h1 style={{ marginBottom: 0 }}>Sign Up</h1>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          <input
-            placeholder="Email"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder=" Username"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="First Name"
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Last Name"
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <input
-            placeholder="Confirm Password"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <div className="signUp-button">
+      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+      <div className="border-div"></div>
+      <div style={{ margin: " 0 auto", padding: "0 20px" }}>
+        <h1 className="welcome-signUp">Welcome to Yawnbnb</h1>
+        <form className="form-container" onSubmit={handleSubmit}>
+          {errors.length > 0 && (
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+          )}
+          <div>
+            <input
+              placeholder="Email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="signup-input"
+            />
+
+            <input
+              placeholder=" Username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              className="signup-input"
+            />
+
+            <input
+              placeholder="First Name"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+
+            <input
+              placeholder="Last Name"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              className="signup-input"
+            />
+
+            <input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="signup-input"
+            />
+
+            <input
+              placeholder="Confirm Password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="signup-input"
+            />
+          </div>
           <button className="signUp-btn" type="submit">
             Sign Up
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

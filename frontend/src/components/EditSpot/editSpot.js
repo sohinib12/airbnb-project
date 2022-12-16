@@ -17,8 +17,8 @@ export default function EditSpot() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [errorValidations, setErrorValidations] = useState([]);
-  const user = useSelector(state => state.session)
-  const spot = useSelector(state => state.spots.singleSpot)
+  const user = useSelector((state) => state.session);
+  const spot = useSelector((state) => state.spots.singleSpot);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,31 +32,30 @@ export default function EditSpot() {
       country,
       price,
       description,
-      lat:112.2378,
-      lng:101.9872
+      lat: 112.2378,
+      lng: 101.9872,
     };
 
-    let editedSpot = await  dispatch(editSpotThunk(newSpot, spot.id));
+    let editedSpot = await dispatch(editSpotThunk(newSpot, spot.id));
 
     if (editedSpot) {
-
       history.push(`/spots/${spotId}`);
     }
   };
   // set the form with spot previous details
   useEffect(() => {
-    if(Object.keys(spot).length > 0){
-      const { name, address, city, state, country, price, description} = spot
+    if (Object.keys(spot).length > 0) {
+      const { name, address, city, state, country, price, description } = spot;
       setName(name);
-      setAddress(address)
-      setCity(city)
-      setState(state)
-      setCountry(country)
-      setPrice(price)
-      setDescription(description)
+      setAddress(address);
+      setCity(city);
+      setState(state);
+      setCountry(country);
+      setPrice(price);
+      setDescription(description);
     }
     // add spot dependency here so that whenever data is fetched you can update your form
-  },[spot]);
+  }, [spot]);
 
   useEffect(() => {
     dispatch(getSpotDetailsThunk(spotId));
@@ -64,24 +63,21 @@ export default function EditSpot() {
 
   //write errors
   useEffect(() => {
+    const errors = [];
+    if (name?.length === 0) errors.push("Please enter a name");
+    if (address?.length === 0) errors.push("Please enter an address");
+    if (city?.length === 0) errors.push("Please enter a city");
+    if (state?.length === 0) errors.push("Please enter a state");
+    if (country?.length === 0) errors.push("Please enter a country");
+    if (price <= 0) errors.push("Please enter a price");
+    if (description?.length === 0) errors.push("Please enter a description");
 
-    const errors = []
-    if(name?.length === 0) errors.push("Please enter a name")
-        if(address?.length === 0) errors.push("Please enter an address")
-        if(city?.length === 0) errors.push("Please enter a city")
-        if(state?.length === 0) errors.push("Please enter a state")
-        if(country?.length === 0) errors.push("Please enter a country")
-        if(price <= 0) errors.push("Please enter a price")
-        if(description?.length === 0) errors.push("Please enter a description")
-
-        setErrorValidations(errors)
-  },[name, address, city, state, country, price, description]);
+    setErrorValidations(errors);
+  }, [name, address, city, state, country, price, description]);
 
   return (
-    <div className="edit-spot-root">
-      <div className="welcome-container">
-        <h1>Edit your place</h1>
-      </div>
+    <div style={{ width: "500px" }} className="edit-spot-root">
+      <h1 className="welcome-container">Edit your place</h1>
       <div id="host-forms">
         <ul>
           {errorValidations.map((error) => (
@@ -96,6 +92,7 @@ export default function EditSpot() {
               placeholder="Spot Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="edit-input"
             />
           </label>
           <label>

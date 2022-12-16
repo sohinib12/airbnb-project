@@ -7,23 +7,26 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* align-items: center; */
 }
 
 .form-actions{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
+    margin-left: 16px;
 }
 .edit-spot-root{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-input {
+.edit-input {
     margin: 15px;
     margin-bottom: 10pxf;
 }
+
 
 label {
     display: flex;
@@ -38,6 +41,6 @@ label {
     border-radius: 10px;
     background-color: white;
 }
-h1 {
-    text-align: center;
+.welcome-container{
+    text-align: start;
 }

@@ -7,7 +7,7 @@ import "./DemoUser.css";
 function DemoUserModal() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("Demo-lition");
-  const [password, setPassword] = useState("password");
+  const [password, setPassword] = useState("password1");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -60,3 +60,5 @@ function DemoUserModal() {
 }
 
 export default DemoUserModal;
+
+

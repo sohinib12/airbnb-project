@@ -10,12 +10,17 @@ export default function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.singleSpot);
+  const user = useSelector((state) => state.session)
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getSpotDetailsThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
+
+  console.log("spot -",spot)
+  console.log("user -", user)
+
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -29,6 +34,7 @@ export default function SpotDetails() {
   const displayImages = spot.SpotImages && spot.SpotImages.length > 0;
 
   if (!spot.id) return null;
+
   return (
     <div className="spot-details">
       <div className="spot-name">{spot.name}</div>
@@ -43,6 +49,8 @@ export default function SpotDetails() {
           <div>{spot.state}</div>
           <div>{spot.country}</div>
         </div>
+        { spot.User.id === user.user?.id &&(
+
         <div className="address-details">
           <button onClick={(e) => handleEdit(e)}>
             <i className="fas fa-edit"></i>
@@ -51,6 +59,8 @@ export default function SpotDetails() {
             <i className="fas fa-trash"></i>
           </button>
         </div>
+
+        )}
       </div>
 
       {displayImages && (

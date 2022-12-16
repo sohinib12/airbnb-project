@@ -5,7 +5,6 @@
 .spot-form{
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .form-actions{
@@ -13,7 +12,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    margin-left: 16px;
+    margin-left: 16px 0;
 }
 .create-spot-root{
     display: flex;
@@ -21,9 +20,11 @@
     justify-content: center;
 }
 .create-spot-input{
-    margin: 15px;
-    margin-bottom: 10pxf;
+    margin: 2px 8px;
+    height: 40px;
+    border-radius: 8px;
 }
+
 
 label {
     display: flex;
@@ -40,4 +41,30 @@ label {
 }
 .welcome-container{
     text-align: start;
+}
+
+.create-btn{
+    background: linear-gradient(45deg, #FF5A5F, #e31c5f 30%);
+    color: #FFF;
+    font-weight: 500;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 100%;
+    bottom: 20px;
+    margin-right: 0;
+}
+.cancel-edit-button{
+    background-color: #fff;
+    border: 0 solid #ddd;
+    border-radius: 21px;
+    font-weight: 600;
+    height: 42px;
+    padding: 5px 5px 5px 12px;
+    width: 130px;
+    cursor: pointer;
+}
+.cancel-edit-button:hover{
+    background-color: #f5f5f5;
 }

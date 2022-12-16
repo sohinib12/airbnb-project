@@ -38,6 +38,7 @@ function DemoUserModal() {
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
+            className="demo-input"
           />
         </label>
         <label>
@@ -47,6 +48,7 @@ function DemoUserModal() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="demo-input"
           />
         </label>
         <div className="login-button">
@@ -60,5 +62,3 @@ function DemoUserModal() {
 }
 
 export default DemoUserModal;
-
-

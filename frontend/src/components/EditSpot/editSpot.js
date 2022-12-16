@@ -75,89 +75,93 @@ export default function EditSpot() {
     setErrorValidations(errors);
   }, [name, address, city, state, country, price, description]);
 
+  const cancel = (e) => {
+    e.preventDefault();
+    history.push(`/spots/${spotId}`);
+  };
+
   return (
     <div style={{ width: "500px" }} className="edit-spot-root">
-      <h1 className="welcome-container">Edit your place</h1>
+      <h1 className="edit-page-title">Edit your listing</h1>
       <div id="host-forms">
         <ul>
           {errorValidations.map((error) => (
             <li key={error}>{error}</li>
           ))}
         </ul>
-        <form className="spot-form" onSubmit={handleSubmit}>
-          <label>
-            <input
-              maxLength="25"
-              type="text"
-              placeholder="Spot Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="edit-input"
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Address"
-              maxLength="50"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="City"
-              maxLength="50"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="State"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Country"
-              maxLength="50"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              placeholder="Description"
-              maxLength="100"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </label>
+        <form className="edit-spot-form" onSubmit={handleSubmit}>
+          <input
+            maxLength="25"
+            type="text"
+            placeholder="Spot Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="edit-input"
+          />
+
+          <input
+            type="text"
+            placeholder="Address"
+            maxLength="50"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="edit-input"
+          />
+
+          <input
+            type="text"
+            placeholder="City"
+            maxLength="50"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="edit-input"
+          />
+
+          <input
+            type="text"
+            placeholder="State"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            className="edit-input"
+          />
+
+          <input
+            type="text"
+            placeholder="Country"
+            maxLength="50"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            className="edit-input"
+          />
+
+          <input
+            type="number"
+            placeholder="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="edit-input"
+          />
+
+          <input
+            type="text"
+            placeholder="Description"
+            maxLength="100"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="edit-input"
+          />
           <div className="form-actions">
+          <button className="cancel-edit-button" onClick={(e) => cancel(e)}>
+              Cancel
+            </button>
             <button
-              className="submit"
+              className="edit-btn"
               disabled={errorValidations.length > 0}
               type="submit"
             >
               Edit
             </button>
-            <Link id="cancel-host-form" exact to="/">
-              Cancel
-            </Link>
+
           </div>
         </form>
       </div>

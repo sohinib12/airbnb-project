@@ -37,7 +37,6 @@ export default function Reviews({ spotId }) {
   };
   const handleEdit = (e) => {
     e.preventDefault();
-    // history.push(`/spots/${spotId}/edit`);
   };
 
   const displayReviews = Object.keys(reviews).length;
@@ -45,7 +44,7 @@ export default function Reviews({ spotId }) {
   return (
     <div className="review-container">
       <AddReview spotId={spotId} />
-
+      {/* todo add price container */}
       <div>
         {displayReviews &&
           Object.values(reviews).map((review) => (
@@ -62,9 +61,9 @@ export default function Reviews({ spotId }) {
                 </div>
               </div>
               {user.user?.id === review.userId && (
-                <div>
+                <div style={{marginRight: "10px"}}>
                   {/* <button onClick={(e) => handleEdit(e)}>Edit</button> */}
-                  <button onClick={(e) => handleDelete(e, review.id)}>
+                  <button onClick={(e) => handleDelete(e, review.id)} className="delete-review-btn">
                     Delete
                   </button>
                 </div>

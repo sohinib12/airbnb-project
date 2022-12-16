@@ -40,7 +40,6 @@ export default function CreateSpot() {
     };
     let createdSpot = await dispatch(createSpotThunk(newSpot));
 
-    console.log(createdSpot);
     if (createdSpot && imageUrl) {
       const image = {
         url: imageUrl,
@@ -67,9 +66,14 @@ export default function CreateSpot() {
     setErrorValidations(errors);
   }, [name, address, city, state, country, price, description]);
 
+  const cancel = (e) => {
+    e.preventDefault();
+    history.push(`/spots`);
+  };
+
   return (
     <div style={{ width: "600px" }}>
-      <h1 className="welcome-container">Create your place</h1>
+      <h1 className="welcome-container">Host your Experience</h1>
       <div className="create-spot-root">
         <div id="host-forms">
           <ul>
@@ -78,97 +82,89 @@ export default function CreateSpot() {
             ))}
           </ul>
           <form className="spot-form" onSubmit={handleSubmit}>
-            <label>
-              <input
-                maxLength="25"
-                type="text"
-                placeholder="Spot Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="Address"
-                maxLength="50"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="City"
-                maxLength="50"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="State"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="Country"
-                maxLength="50"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="Image url"
-                value={imageUrl}
-                onChange={(e) => {
-                  e.preventDefault();
-                  setImageUrl(e.target.value);
-                }}
-                className="create-spot-input"
-              />
-            </label>
-            <label>
-              <input
-                type="text"
-                placeholder="Description"
-                maxLength="100"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="create-spot-input"
-              />
-            </label>
+            <input
+              maxLength="25"
+              type="text"
+              placeholder="Spot Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="create-spot-input"
+            />
+
+            <input
+              type="text"
+              placeholder="Address"
+              maxLength="50"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="create-spot-input"
+            />
+
+            <input
+              type="text"
+              placeholder="City"
+              maxLength="50"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="create-spot-input"
+            />
+
+            <input
+              type="text"
+              placeholder="State"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              className="create-spot-input"
+            />
+
+            <input
+              type="text"
+              placeholder="Country"
+              maxLength="50"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="create-spot-input"
+            />
+
+            <input
+              placeholder="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              className="create-spot-input"
+              type="number"
+            />
+
+            <input
+              type="text"
+              placeholder="Image url"
+              value={imageUrl}
+              onChange={(e) => {
+                e.preventDefault();
+                setImageUrl(e.target.value);
+              }}
+              className="create-spot-input"
+            />
+
+            <input
+              type="text"
+              placeholder="Description"
+              maxLength="100"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="create-spot-input"
+            />
             <div className="form-actions">
+            <button className="cancel-edit-button" onClick={(e) => cancel(e)}>
+                Cancel
+              </button>
               <button
-                className="submit"
+                className="create-btn"
                 disabled={errorValidations.length > 0}
                 type="submit"
               >
-                Create New Spot
+                Submit
               </button>
-              <Link id="cancel-form" exact to="/">
-                Cancel
-              </Link>
+
             </div>
           </form>
         </div>

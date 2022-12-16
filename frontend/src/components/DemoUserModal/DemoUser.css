@@ -28,7 +28,7 @@
     flex-direction: column;
     gap: 10px;
 } */
-input {
+.demo-input {
     width: 100%;
     height: 40px;
     border-radius: 8px;

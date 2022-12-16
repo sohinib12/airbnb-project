@@ -53,7 +53,7 @@ function SignupFormModal() {
               ))}
             </ul>
           )}
-          <div>
+          <div className="login-input-container">
             <input
               placeholder="Email"
               type="text"
@@ -78,6 +78,7 @@ function SignupFormModal() {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
+              className="signup-input"
             />
 
             <input

@@ -121,7 +121,8 @@ router.get("/", validateQuery, async (req, res, next) => {
 
     const totalStars =
       reviews.reduce((prev, next) => prev + next.stars, 0) || 0;
-    spot.avgRating = reviews.length ? totalStars / reviews.length : 0;
+    avgRating = reviews.length ? totalStars / reviews.length : 0;
+    spot.avgRating = avgRating.toFixed(2);
   });
   if (page && size) {
     return res.json({ Spots: spotList, page, size });
@@ -354,14 +355,21 @@ router.post(
     let spotCopy = spot.toJSON();
     // console.log(spotCopy)
     // Review from the current user already exists for the Spot
+    let userReviewExists = false;
     spotCopy.Reviews.forEach((review) => {
       if (review.userId === userId) {
-        return res.status(403).json({
-          message: "User already has a review for this spot",
-          statusCode: 403,
-        });
+        userReviewExists = true;
+        return;
       }
     });
+
+    if (userReviewExists) {
+      return res.status(403).json({
+        message: "User already has a review for this spot",
+        statusCode: 403,
+      });
+    }
+
     let spotReview = await Review.create({
       userId,
       spotId: +spotId,

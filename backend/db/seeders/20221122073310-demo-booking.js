@@ -12,13 +12,13 @@ module.exports = {
       {
         spotId: 2,
         userId: 1,
-        startDate: "2022-02-1",
+        startDate: "2022-02-01",
         endDate: "2022-02-16"
       },
       {
         spotId: 1,
         userId: 2,
-        startDate: "2022-09-6",
+        startDate: "2022-09-06",
         endDate: "2022-09-10"
       },
       {
@@ -26,6 +26,24 @@ module.exports = {
         userId: 3,
         startDate: "2022-01-01",
         endDate: "2022-01-08"
+      },
+      {
+        spotId: 4,
+        userId: 2,
+        startDate: "2022-03-17",
+        endDate: "2022-03-20"
+      },
+      {
+        spotId: 5,
+        userId: 3,
+        startDate: "2022-05-06",
+        endDate: "2022-06-06"
+      },
+      {
+        spotId: 6,
+        userId: 4,
+        startDate: "2022-08-05",
+        endDate: "2022-08-10"
       },
     ])
   },

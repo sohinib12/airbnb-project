@@ -7,7 +7,7 @@ import "./DemoUser.css";
 function DemoUserModal() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("Demo-lition");
-  const [password, setPassword] = useState("password");
+  const [password, setPassword] = useState("password1");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
@@ -16,46 +16,48 @@ function DemoUserModal() {
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
-      .catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        }
-      );
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="demo-container">
+      <h1 style={{ marginBottom: 0 }}>Log In</h1>
+      <form className="form-container" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
         <label>
-          Username or Email
           <input
+            placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
+            className="demo-input"
           />
         </label>
         <label>
-          Password
           <input
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="demo-input"
           />
         </label>
         <div className="login-button">
-        <button className="login-btn" type="submit">Log In</button>
+          <button className="login-btn" type="submit">
+            Log In
+          </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

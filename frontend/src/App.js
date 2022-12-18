@@ -8,6 +8,7 @@ import CreateSpot from "./components/CreateSpot/createSpot";
 import GetSpotDetails from "./components/GetSpotDetails/index";
 import EditSpot from "./components/EditSpot/editSpot";
 import PageNotFound from "./components/PageNotFound";
+import Footer from "./components/Footer/footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
           </Switch>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

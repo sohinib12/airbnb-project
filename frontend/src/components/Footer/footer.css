@@ -1,0 +1,20 @@
+.link-footer:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+.leftside-footer {
+    flex-grow: 1;
+}
+.rightside-footer {
+    display: flex;
+    gap: 12px
+}
+footer{
+    display: flex;
+    align-items: center;
+    /* justify-content:flex-end; */
+    margin:80px 0px;
+    border-top: 1px solid rgb(197, 194, 194);
+    padding: 20px;
+    bottom: 0%;
+}

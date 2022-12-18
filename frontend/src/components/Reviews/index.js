@@ -6,7 +6,7 @@ import "./reviews.css";
 import ReviewUser from "./reviewUser";
 import AddReview from "./addReview";
 
-export default function Reviews({ spotId }) {
+export default function Reviews({ spotId, handleUpdateReviews }) {
   const dispatch = useDispatch();
   // const spot = useSelector((state)=>state.spots.singleSpot);
   const reviews = useSelector((state) => state.reviews.spotReviews) || {};
@@ -32,21 +32,27 @@ export default function Reviews({ spotId }) {
 
   const handleDelete = (e, reviewId) => {
     e.preventDefault();
-    dispatch(deleteReviewThunk(reviewId));
-    dispatch(getAllReviewsThunk(spotId));
+    return dispatch(deleteReviewThunk(reviewId))
+      .then(() => {
+        handleUpdateReviews()
+      })
+      .catch(async (res) => {
+        //TODO include delete message if needed
+      });
   };
-  const handleEdit = (e) => {
-    e.preventDefault();
+
+  const handleAddReview = () => {
+    handleUpdateReviews()
   };
 
   const displayReviews = Object.keys(reviews).length;
 
   return (
     <div className="review-container">
-      <AddReview spotId={spotId} />
+      <AddReview spotId={spotId} handleAddReview={handleAddReview} />
       {/* todo add price container */}
       <div>
-        {displayReviews &&
+        {displayReviews > 0 &&
           Object.values(reviews).map((review) => (
             <div key={review.id} className="review-box">
               <div className="review-user">

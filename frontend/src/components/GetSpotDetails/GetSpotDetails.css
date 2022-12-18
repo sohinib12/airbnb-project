@@ -26,6 +26,8 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 .spot-name{
     font-size: 2em;
@@ -42,4 +44,97 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+.bed-bath-details{
+    font-size: 16px;
+    padding:0px 0px 10px 0px;
+    font-weight: normal;
+   }
+.aircover-title-image img{
+    width: 200px;
+    padding: 30px;
+    padding-left:0px;
+}
+.aircover-info{
+    padding-bottom: 30px;
+    font-weight: normal;
+    /* border-bottom: 1px solid rgb(224, 216, 216); */
+}
+.price-rating-side-box {
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    margin:30px;
+    border-radius: 20px;
+    width: 30%;
+    height: 60%;
+    box-shadow: 2px 2px 2px 2px rgba(90, 88, 88, 0.2);
+    text-align: center;
+
+}
+
+.spot-details-rating {
+    padding: 20px;
+}
+
+.location-container,
+.checkin-container,
+.cancel-container {
+ display:flex;
+ justify-content: flex-start;
+ font-weight: normal;
+ font-size: 16px;
+ padding-bottom: 16px;
+}
+
+.fa-location-dot,
+.fa-door-open,
+.fa-calendar{
+    margin:20px;
+    font-size: 25px;
+    margin-left:0px;
+
+}
+
+.location-info-title,
+.checkin-title,
+.cancel-title {
+    font-weight: bold;
+    color: black;
+    padding-bottom: 4px;
+}
+
+.location-info,
+.checkin-info,
+.cancel-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    color: grey;
+    width:70%;
+}
+.airbnb-amenities-info-image{
+    width: 60px;
+}
+.spot-edit-delete-button:hover {
+    cursor: pointer;
+}
+.flex{
+    display: flex;
+}
+
+.host-details-spot-info{
+    width: 70%;
+}
+.host-info{
+    width: 30%
+}
+hr{
+
+    color: #978f8f;
+    margin: 16px 0px;
+    /* border-bottom: 1px solid rgb(224, 216, 216); */
 }

@@ -73,6 +73,9 @@
     list-style: none;
     width: 250px;
 }
+.list--profile-dropdown:hover{
+    cursor: pointer;
+}
 
 .button--dropdown-item {
     border: none;

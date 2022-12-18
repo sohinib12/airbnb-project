@@ -14,7 +14,7 @@ const AllSpots = () => {
   // console.log(spots)
 
   useEffect(() => {
-    dispatch(getAllSpotsThunk())
+    dispatch(getAllSpotsThunk());
   }, [dispatch]);
 
   const handleSpotClick = (e, id) => {
@@ -24,33 +24,56 @@ const AllSpots = () => {
 
   // if(!spots.length) return null;
 
+  function getRandomInt(max, min) {
+    return Math.floor( Math.random() * (max - min) + min ) * 100;
+  }
+
   return (
-        <div className="spot-container-root">
-          {spots.map((spot) => (
-            <div onClick={(e)=> handleSpotClick(e, spot.id)} key={spot.id} className="spot-container">
-              <div className="spot-img">
-                <img className="image" src={spot.previewImage} alt={`spot#${spot.id}`} />
+    <div className="spot-container-root">
+      {spots.map((spot) => (
+        <div
+          onClick={(e) => handleSpotClick(e, spot.id)}
+          key={spot.id}
+          className="spot-container"
+        >
+          <div className="spot-img">
+            <img
+              className="image"
+              src={spot.previewImage}
+              alt={`spot#${spot.id}`}
+            />
+          </div>
+          <div className="spot-info-container">
+            <div className="spot-info">
+              <div className="title-container">
+                <span id="all-spots-name" key={spot.id}>
+                  {/* {spot.name} */}
+                  {spot.city.length + spot.state.length > 50
+                  ? spot.state
+                  : `${spot.city}, ${spot.state}`}
+                </span>
               </div>
-              <div className="spot-info-container">
-                <div className="spot-info">
-                  <div>
-                    <div className="title-container">
-                      <span id="all-spots-name" key={spot.id}>{spot.name}</span>
-                    </div>
-                    {/* <div className="title-container" key={spot.id}>{spot.city},{spot.state}</div> */}
-                    <p id="address-for-spot" key={spot.id}>{spot.city.length + spot.state.length > 50 ? spot.state : `${spot.city}, ${spot.state}`}</p>
-                    <p id="price-per-night" key={spot.id}>${spot.price} night</p>
-                  </div>
-                </div>
-                <div className="spot-rating">
-                  <span id="spot-rating" key={spot.id}>
-                    <i className="fas fa-star">{spot.avgRating}</i>
-                  </span>
-                </div>
+              {/* <div className="title-container" key={spot.id}>{spot.city},{spot.state}</div> */}
+              <div className="address-for-spot" key={spot.id}>
+                {`${getRandomInt(spot.id, 1)} miles away`}
+
+                {/* {spot.city.length + spot.state.length > 50
+                  ? spot.state
+                  : `${spot.city}, ${spot.state}`} */}
+              </div>
+              <div id="price-per-night" key={spot.id}>
+                <b>${spot.price}</b> night
               </div>
             </div>
-          ))}
+            <div className="spot-rating">
+              <span id="spot-rating" key={spot.id}>
+                <i className="fas fa-star card-rating">{spot.avgRating}</i>
+              </span>
+            </div>
+          </div>
         </div>
+      ))}
+    </div>
   );
 };
 

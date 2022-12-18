@@ -43,7 +43,6 @@ function Navigation({ isLoaded }) {
   return (
     <div className="nav-root">
       <div className="nav-one">
-        {/* <i className="fa-thin fa-mountain-city"></i> */}
         <NavLink exact to="/">
           <img
             className="nav-home-img"

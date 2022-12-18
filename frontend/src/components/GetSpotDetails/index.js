@@ -5,12 +5,15 @@ import { getSpotDetailsThunk, deleteSpotThunk } from "../../store/spot";
 import "./GetSpotDetails.css";
 import { getAllReviewsThunk } from "../../store/review";
 import Reviews from "../Reviews/index";
+import { useModal } from "../../context/Modal";
+import AddReviewModal from "../Reviews/addReviewModal";
 
 export default function SpotDetails() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.singleSpot);
   const user = useSelector((state) => state.session);
+  const { setModalContent, setOnModalClose } = useModal();
   const history = useHistory();
 
   useEffect(() => {
@@ -31,6 +34,12 @@ export default function SpotDetails() {
   const handleUpdateReviews = () => {
     dispatch(getSpotDetailsThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
+  };
+
+  const handleAddReview = () => {
+    setModalContent(
+      <AddReviewModal spotId={spotId} handleAddReview={handleUpdateReviews} />
+    );
   };
 
   const displayImages = spot.SpotImages && spot.SpotImages.length > 0;
@@ -72,33 +81,21 @@ export default function SpotDetails() {
           </div>
         )}
       </div>
+
       {displayImages && (
-        <div className="spot-images">
-          <div>
-            <img
-              className="image-div-one-spot"
-              src={spot.SpotImages[0].url}
-              alt=""
-            />
-          </div>
-          <div className="spot-secondary-images-container">
-            {spot.SpotImages.map((image, index) => {
-              const key = `spot-image-${image.id}`;
-              return (
-                index !== 0 &&
-                index < 5 && (
-                  <img
-                    key={key}
-                    className="spot-secondary-image"
-                    src={image.url}
-                    alt=""
-                  />
-                )
-              );
-            })}
-            {/* TODO Add show more button*/}
-            {/* {spot.SpotImages.length > 4 && <button>Show more</button>} */}
-          </div>
+        <div className="spot-images-container">
+          {spot.SpotImages.map((image, index) => {
+            const key = `spot-image-${image.id}`;
+            const className =
+              index === 0
+                ? "spot-secondary-image first"
+                : "spot-secondary-image";
+            return (
+              index < 5 && (
+                <img key={key} className={className} src={image.url} alt="" />
+              )
+            );
+          })}
         </div>
       )}
       <br />
@@ -106,7 +103,9 @@ export default function SpotDetails() {
         <div style={{ width: "70%" }}>
           <div className="flex">
             <div className="host-details-spot-info">
-              <div>{`Entire place hosted by ${spot.User.firstName} ${spot.User.lastName}`}</div>
+              <h2
+                style={{ margin: "0px 2px 4px 0px" }}
+              >{`Entire place hosted by ${spot.User.firstName} ${spot.User.lastName}`}</h2>
               <div className="bed-bath-details">
                 <span> 4 guests</span>
                 <span> 3 bedrooms</span>
@@ -114,16 +113,16 @@ export default function SpotDetails() {
                 <span> 2 bath</span>
               </div>
             </div>
-            <div className="host-info">
+            {/* <div className="host-info">
               <div className="owner-pic">
                 <i class="fa-solid fa-user"></i>
               </div>
-            </div>
+            </div> */}
           </div>
-          <hr />
           <div className="location-container">
             <div className="airbnb-amenities-info-image">
-              <i className="fa-solid fa-location-dot"></i>
+              {/* <i className="fa-solid fa-location-dot"></i> */}
+              <i className="fa-solid fa-medal"></i>
             </div>
             <div className="location-info">
               <div className="location-info-title">
@@ -182,10 +181,21 @@ export default function SpotDetails() {
       </div>
 
       <div></div>
-
+      {/* -------Reviews tab-------- */}
       <div>
-        <h3>Reviews</h3>
+        <div className="review-title">
+          <i class="fas fa-star rating-color"></i>
+          <h3>
+            {spot.avgStarRating ? Number(spot.avgStarRating).toFixed(1) : ""}
+          </h3>
+          <h3> - {spot.numReviews} reviews</h3>
+          {user && <button onClick={handleAddReview}>Enter a Review</button>}
+        </div>
+
         <Reviews spotId={spotId} handleUpdateReviews={handleUpdateReviews} />
+        {/* <div>
+          <Reviews spotId={spotId} handleUpdateReviews={handleUpdateReviews} />
+        </div> */}
       </div>
     </div>
   );

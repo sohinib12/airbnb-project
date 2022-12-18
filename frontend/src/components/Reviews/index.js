@@ -48,10 +48,9 @@ export default function Reviews({ spotId, handleUpdateReviews }) {
   const displayReviews = Object.keys(reviews).length;
 
   return (
-    <div className="review-container">
-      <AddReview spotId={spotId} handleAddReview={handleAddReview} />
-      {/* todo add price container */}
-      <div>
+    <div>
+      {/* <AddReview spotId={spotId} handleAddReview={handleAddReview} /> */}
+      <div className="bottom-review-container">
         {displayReviews > 0 &&
           Object.values(reviews).map((review) => (
             <div key={review.id} className="review-box">

@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
   const { setModalContent, setOnModalClose } = useModal();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
-  const user = useSelector((state) => state?.session?.user);
+  // const user = useSelector((state) => state?.session?.user);
   const history = useHistory();
 
   const handleLogin = (e) => {
@@ -32,32 +32,29 @@ function Navigation({ isLoaded }) {
 
   const createSpot = (e) => {
     e.preventDefault();
-    if (!user) {
-      alert("log in to create a spot!");
-    } else {
       history.push("/spots/create");
-    }
   };
 
-
+  console.log(sessionUser);
   return (
     <div className="nav-root">
       <div className="nav-one">
-        {/* <i className="fa-thin fa-mountain-city"></i> */}
         <NavLink exact to="/">
           <img
             className="nav-home-img"
             src={process.env.PUBLIC_URL + "/cabin.png"}
             alt="Home"
           ></img>
+          <span className="title">Yawnbnb</span>
         </NavLink>
-        <span className="title">Yawnbnb</span>
       </div>
-      <div className="nav-two">
-        <button className="button-create-spot" onClick={(e) => createSpot(e)}>
-          Enter your listing
-        </button>
-      </div>
+      {sessionUser && (
+        <div className="nav-two">
+          <button className="button-create-spot" onClick={(e) => createSpot(e)}>
+            Enter your listing
+          </button>
+        </div>
+      )}
 
       <div className="nav-three">
         {isLoaded && (

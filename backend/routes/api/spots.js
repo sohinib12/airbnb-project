@@ -164,20 +164,20 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
 // Get details of a Spot from an id
 router.get("/:spotId", async (req, res, next) => {
-  const spots = await Spot.findOne({
+  let spots = await Spot.findOne({
     where: { id: req.params.spotId },
-    attributes: {
-      include: [
-        [sequelize.fn("COUNT", sequelize.col("Reviews.stars")), "numReviews"],
-        [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgStarRating"],
-      ],
-    },
     include: [
-      { model: Review, attributes: [] },
-      { model: SpotImage, attributes: ["id", "url", "preview"] },
-      { model: User, attributes: ["id", "firstName", "lastName"] },
+      { model: Review},
+      { model: SpotImage},
+      { model: User },
     ],
-    group: ["Reviews.id", "SpotImages.id", "User.id", "Spot.id"],
+    // attributes: {
+    //   include: [
+    //     [sequelize.fn("COUNT", sequelize.col("Reviews.stars")), "numReviews"],
+    //     [sequelize.fn("AVG", sequelize.col("Reviews.stars")), "avgStarRating"],
+    //   ],
+    // },
+    // group: ["Reviews.id", "SpotImages.id", "User.id", "Spot.id"],
   });
   if (spots.length === 0) {
     res.status(404);
@@ -186,7 +186,17 @@ router.get("/:spotId", async (req, res, next) => {
       statusCode: 404,
     });
   }
-  console.log(spots);
+
+  spots = spots.toJSON()
+
+  const reviews = spots.Reviews;
+  const numReviews = reviews.length;
+  const avgStarRating = reviews.reduce((prev, next)=> prev+next.stars, 0) / numReviews
+
+  delete spots.Reviews;
+  spots["numReviews"] = numReviews;
+  spots["avgStarRating"] = avgStarRating
+
   return res.json(spots);
 });
 

@@ -37,12 +37,9 @@ export const addReviewThunk = (data, spotId) => async (dispatch) => {
     body: JSON.stringify(data),
   });
   if (response.ok) {
-    const data = await response.json();
-    // dispatch(addReview(data));
-    return data;
-  }
-  else{
-    return {}
+    const newReview = await response.json();
+    // dispatch(addReview(newReview, spotId));
+    return newReview;
   }
 };
 

@@ -6,7 +6,7 @@ import "./reviews.css";
 import ReviewUser from "./reviewUser";
 import AddReview from "./addReview";
 
-export default function Reviews({ spotId }) {
+export default function Reviews({ spotId, handleUpdateReviews }) {
   const dispatch = useDispatch();
   // const spot = useSelector((state)=>state.spots.singleSpot);
   const reviews = useSelector((state) => state.reviews.spotReviews) || {};
@@ -32,39 +32,46 @@ export default function Reviews({ spotId }) {
 
   const handleDelete = (e, reviewId) => {
     e.preventDefault();
-    dispatch(deleteReviewThunk(reviewId));
-    dispatch(getAllReviewsThunk(spotId));
+    return dispatch(deleteReviewThunk(reviewId))
+      .then(() => {
+        handleUpdateReviews();
+      })
+      .catch(async (res) => {
+        //TODO include delete message if needed
+      });
   };
-  const handleEdit = (e) => {
-    e.preventDefault();
+
+  const handleAddReview = () => {
+    handleUpdateReviews();
   };
 
   const displayReviews = Object.keys(reviews).length;
 
   return (
-    <div className="review-container">
-      <AddReview spotId={spotId} />
-      {/* todo add price container */}
-      <div>
-        {displayReviews &&
+    <div>
+      {/* <AddReview spotId={spotId} handleAddReview={handleAddReview} /> */}
+      <div className="bottom-review-container">
+        {displayReviews > 0 &&
           Object.values(reviews).map((review) => (
             <div key={review.id} className="review-box">
               <div className="review-user">
                 <ReviewUser user={review.User} />
               </div>
               <div className="review">
-                <div>{review.review}</div>
                 <div>
-                  {Array.from(Array(review.stars).keys()).map((index) => (
-                    <i key={index} className="fas fa-star rating-color"></i>
-                  ))}
+                  <div>{review.review}</div>
+                  <div>
+                    {Array.from(Array(review.stars).keys()).map((index) => (
+                      <i key={index} className="fas fa-star rating-color"></i>
+                    ))}
+                  </div>
                 </div>
               </div>
               {user.user?.id === review.userId && (
-                <div style={{marginRight: "10px"}}>
+                <div style={{ marginTop: "10px" }}>
                   {/* <button onClick={(e) => handleEdit(e)}>Edit</button> */}
-                  <button onClick={(e) => handleDelete(e, review.id)} className="delete-review-btn">
-                    Delete
+                  <button onClick={(e) => handleDelete(e, review.id)}>
+                    <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>
               )}

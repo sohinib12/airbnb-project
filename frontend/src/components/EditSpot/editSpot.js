@@ -84,11 +84,15 @@ export default function EditSpot() {
     <div style={{ width: "500px" }} className="edit-spot-root">
       <h1 className="edit-page-title">Edit your listing</h1>
       <div id="host-forms">
-        <ul>
-          {errorValidations.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
+        {handleSubmit && errorValidations.length > 0 && (
+          <div>
+            <ul className="error-li">
+              {errorValidations.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <form className="edit-spot-form" onSubmit={handleSubmit}>
           <input
             maxLength="25"
@@ -140,6 +144,8 @@ export default function EditSpot() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             className="edit-input"
+            min="1"
+            max="50000"
           />
 
           <input
@@ -151,7 +157,7 @@ export default function EditSpot() {
             className="edit-input"
           />
           <div className="form-actions">
-          <button className="cancel-edit-button" onClick={(e) => cancel(e)}>
+            <button className="cancel-edit-button" onClick={(e) => cancel(e)}>
               Cancel
             </button>
             <button
@@ -161,7 +167,6 @@ export default function EditSpot() {
             >
               Edit
             </button>
-
           </div>
         </form>
       </div>

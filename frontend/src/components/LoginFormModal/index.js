@@ -15,11 +15,18 @@ function LoginFormModal() {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-      .then(closeModal)
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+    .then(closeModal)
+    .catch(async (res) => {
+      const data = await res.json();
+      const { message } = data;
+      setErrors([message]);
+    });
+    // .then((res) => {
+      //   if (res.statusCode >= 400) {
+        //     throw res;
+      //   }
+      //   closeModal();
+      // })
   };
 
   return (
@@ -30,7 +37,7 @@ function LoginFormModal() {
         <h1 className="welcome-login">Welcome to Yawnbnb</h1>
         <form className="form-container" onSubmit={handleSubmit}>
           {errors.length > 0 && (
-            <ul>
+            <ul className="error-li">
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
@@ -53,6 +60,7 @@ function LoginFormModal() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="login-input"
+
             />
           </div>
           <button className="login-btn" type="submit">

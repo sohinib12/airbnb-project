@@ -1,22 +1,5 @@
-.review-box{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    border: 1px solid black;
-    align-items: center;
-}
+/* addReview.js styles */
 
-.review-user{
-    width: 30vw;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    padding: 12px;
-}
-.review{
-    width: 30vw;
-    height: 10vh;
-}
 .add-review-form{
     display: flex;
     flex-direction: column;
@@ -29,11 +12,7 @@
     flex-direction: column;
     gap: 10px;
 }
-.add-rating-input{
-    margin: 0;
-}
 .add-review-btn{
-    /* width: 20vw; */
     background: linear-gradient(45deg, #FF5A5F, #e31c5f 30%);
     color: #FFF;
     font-weight: 500;
@@ -45,27 +24,85 @@
     bottom: 20px;
     margin-right: 22px;
 }
-.avatar{
+/* .avatar{
     font-size: 2em;
-}
+} */
+/* reviewUser styles */
+
 .review-user-container{
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 6px;
     align-items: center;
+}
+
+/* index.js from all the reviews */
+.bottom-review-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+}
+.review-box{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: column;
+    /* border: 1px solid rgb(234, 222, 222); */
+    padding: 4px;
+}
+.review-user{
+    display: flex;
+    align-items: flex-start;
+    padding: 12px;
+}
+.review{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 15px;
+    text-align: justify;
+    word-break: break-word;
 }
 .rating-color {
     color: #e99824
 }
-.delete-review-btn {
+
+/* addReviewModal styles */
+
+.add-review-container{
+    width: 350px;
+    height: 350px;
+    padding: 16px;
+}
+.add-review-title {
+    text-align: center;
+}
+.border-review-container {
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.add-review-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.review-input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.review-btn {
     background: linear-gradient(45deg, #FF5A5F, #e31c5f 30%);
     color: #FFF;
     font-weight: 500;
-    padding: 10px;
+    padding: 15px;
     border: none;
     border-radius: 7px;
     cursor: pointer;
     width: 100%;
     bottom: 20px;
-    margin-right: 22px;
+}
+.review-btn:hover{
+    background: linear-gradient(45deg, #e31c5f, #FF5A5F);
+    /* background: linear-gradient(45deg, #e4d163, #e7eab4); */
 }

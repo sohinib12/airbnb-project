@@ -6,7 +6,7 @@ export default function Footer() {
     <footer>
       <div className="leftside-footer">Airbnb clone by Sohini Bonthala</div>
       <div className="rightside-footer">
-        <a className="link-footer">
+        <a className="link-footer" href="https://www.linkedin.com/in/sohini-bonthala-9373b2111/">
           <i className="fa-brands fa-linkedin fa-xl" />
         </a>
         <a className="link-footer">
@@ -16,4 +16,3 @@ export default function Footer() {
     </footer>
   );
 }
-// add linkedin profile & github profile

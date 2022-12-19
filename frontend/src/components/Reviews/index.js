@@ -69,7 +69,6 @@ export default function Reviews({ spotId, handleUpdateReviews }) {
               </div>
               {user.user?.id === review.userId && (
                 <div style={{ marginTop: "10px" }}>
-                  {/* <button onClick={(e) => handleEdit(e)}>Edit</button> */}
                   <button onClick={(e) => handleDelete(e, review.id)}>
                     <i class="fa-solid fa-trash"></i>
                   </button>

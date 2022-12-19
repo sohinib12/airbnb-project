@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { getAllSpotsThunk } from "../../store/spot";
 import { useSelector, useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
 import "./spots.css";
 import { useHistory } from "react-router-dom";
 
 const AllSpots = () => {
   const dispatch = useDispatch();
   const spotsObj = useSelector((state) => state.spots.allSpots);
-
   const spots = Object.values(spotsObj);
   const history = useHistory();
-  // console.log(spots)
 
   useEffect(() => {
     dispatch(getAllSpotsThunk());
@@ -23,9 +20,9 @@ const AllSpots = () => {
   };
 
   // if(!spots.length) return null;
-
+  // to show miles in all spots
   function getRandomInt(max, min) {
-    return Math.floor( Math.random() * (max - min) + min ) * 100;
+    return Math.floor(Math.random() * (max - min) + min) * 100;
   }
 
   return (
@@ -49,19 +46,14 @@ const AllSpots = () => {
                 <span id="all-spots-name" key={spot.id}>
                   {/* {spot.name} */}
                   {spot.city.length + spot.state.length > 50
-                  ? spot.state
-                  : `${spot.city}, ${spot.state}`}
+                    ? spot.state
+                    : `${spot.city}, ${spot.state}`}
                 </span>
               </div>
-              {/* <div className="title-container" key={spot.id}>{spot.city},{spot.state}</div> */}
               <div className="address-for-spot" key={spot.id}>
                 {`${getRandomInt(spot.id, 1)} miles away`}
-
-                {/* {spot.city.length + spot.state.length > 50
-                  ? spot.state
-                  : `${spot.city}, ${spot.state}`} */}
               </div>
-              <div id="price-per-night" key={spot.id}>
+              <div key={spot.id}>
                 <b>${spot.price}</b> night
               </div>
             </div>
@@ -78,8 +70,3 @@ const AllSpots = () => {
 };
 
 export default AllSpots;
-
-{
-  /* <Link key={spot.id} to={`/spots/${spot.id}`}></Link>
-</Link> */
-}

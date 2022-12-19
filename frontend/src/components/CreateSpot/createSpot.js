@@ -19,11 +19,10 @@ export default function CreateSpot() {
   const [errorValidations, setErrorValidations] = useState([]);
   const user = useSelector((state) => state?.session?.user);
 
-  if (!user) {
-    alert("log in to create a spot!");
-    // history.push("/spots")
-  }
-  console.log("user", user)
+  // if (!user) {
+  //   alert("log in to create a spot!");
+  //   // history.push("/spots")
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -21,12 +21,6 @@ function LoginFormModal() {
       const { message } = data;
       setErrors([message]);
     });
-    // .then((res) => {
-      //   if (res.statusCode >= 400) {
-        //     throw res;
-      //   }
-      //   closeModal();
-      // })
   };
 
   return (

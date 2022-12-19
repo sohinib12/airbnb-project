@@ -41,7 +41,7 @@ function SignupFormModal() {
 
   return (
     <div className="signUp-container">
-      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+      <h2 className="signUp-title-container">Sign Up</h2>
       <div className="border-div"></div>
       <div style={{ margin: " 0 auto", padding: "0 20px" }}>
         <h1 className="welcome-signUp">Welcome to Yawnbnb</h1>

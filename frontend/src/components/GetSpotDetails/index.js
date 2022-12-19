@@ -184,9 +184,7 @@ export default function SpotDetails() {
         </div>
 
         <Reviews spotId={spotId} handleUpdateReviews={handleUpdateReviews} />
-        {/* <div>
-          <Reviews spotId={spotId} handleUpdateReviews={handleUpdateReviews} />
-        </div> */}
+        
       </div>
     </div>
   );

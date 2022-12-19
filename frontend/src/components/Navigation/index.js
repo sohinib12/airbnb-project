@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Modal, useModal } from "../../context/Modal";
+import { useModal } from "../../context/Modal";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import DemoUserModal from "../DemoUserModal/index";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 
@@ -15,7 +14,6 @@ function Navigation({ isLoaded }) {
   const { setModalContent, setOnModalClose } = useModal();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
-  // const user = useSelector((state) => state?.session?.user);
   const history = useHistory();
 
   const handleLogin = (e) => {
@@ -35,7 +33,6 @@ function Navigation({ isLoaded }) {
       history.push("/spots/create");
   };
 
-  console.log(sessionUser);
   return (
     <div className="nav-root">
       <div className="nav-one">
@@ -64,19 +61,6 @@ function Navigation({ isLoaded }) {
             demoUser={demoUser}
           />
         )}
-        {/* {showModal && (
-          <Modal
-            onClose={() => {
-              reset();
-              setShowModal(false);
-
-            }}
-          >
-            {loginDisplay && (<LoginFormModal />)}
-            {signUpDisplay && (<SignupFormModal />)}
-            {demoDisplay && (<DemoUserModal />)}
-          </Modal>
-        )} */}
       </div>
     </div>
   );

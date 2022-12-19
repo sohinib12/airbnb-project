@@ -34,7 +34,7 @@ export default function Reviews({ spotId, handleUpdateReviews }) {
     e.preventDefault();
     return dispatch(deleteReviewThunk(reviewId))
       .then(() => {
-        handleUpdateReviews()
+        handleUpdateReviews();
       })
       .catch(async (res) => {
         //TODO include delete message if needed
@@ -42,7 +42,7 @@ export default function Reviews({ spotId, handleUpdateReviews }) {
   };
 
   const handleAddReview = () => {
-    handleUpdateReviews()
+    handleUpdateReviews();
   };
 
   const displayReviews = Object.keys(reviews).length;
@@ -58,18 +58,20 @@ export default function Reviews({ spotId, handleUpdateReviews }) {
                 <ReviewUser user={review.User} />
               </div>
               <div className="review">
-                <div>{review.review}</div>
                 <div>
-                  {Array.from(Array(review.stars).keys()).map((index) => (
-                    <i key={index} className="fas fa-star rating-color"></i>
-                  ))}
+                  <div>{review.review}</div>
+                  <div>
+                    {Array.from(Array(review.stars).keys()).map((index) => (
+                      <i key={index} className="fas fa-star rating-color"></i>
+                    ))}
+                  </div>
                 </div>
               </div>
               {user.user?.id === review.userId && (
-                <div style={{marginRight: "10px"}}>
+                <div style={{ marginTop: "10px" }}>
                   {/* <button onClick={(e) => handleEdit(e)}>Edit</button> */}
-                  <button onClick={(e) => handleDelete(e, review.id)} className="delete-review-btn">
-                    Delete
+                  <button onClick={(e) => handleDelete(e, review.id)}>
+                    <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>
               )}

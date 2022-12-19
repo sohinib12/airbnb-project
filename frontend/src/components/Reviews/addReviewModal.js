@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import "../LoginFormModal/LoginForm.css";
 import { addReviewThunk } from "../../store/review";
+import "./reviews.css";
 
 export default function AddReviewModal({ spotId, handleAddReview }) {
   const dispatch = useDispatch();
@@ -40,22 +40,22 @@ export default function AddReviewModal({ spotId, handleAddReview }) {
   };
 
   return (
-    <div className="login-container">
-      <h2 style={{ textAlign: "center" }}>Review</h2>
+    <div className="add-review-container">
+      <h2 className="add-review-title">Enter Your Review</h2>
       <div className="border-div"></div>
-      <div style={{ margin: " 0 auto", padding: "0 20px" }}>
-        <form className="form-container" onSubmit={handleSubmit}>
+      <div className="border-review-container">
+        <form className="add-review-form-container" onSubmit={handleSubmit}>
           {errors.length > 0 && (
-            <ul>
+            <ul className="error-li">
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>
           )}
-          <div className="login-input-container">
+          <div className="review-input-container">
             <textarea
-              rows="3"
-              cols="3"
+              rows="6"
+              cols="2"
               placeholder="Enter Review"
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
@@ -68,7 +68,7 @@ export default function AddReviewModal({ spotId, handleAddReview }) {
               <option value={5}>5</option>
             </select>
           </div>
-          <button className="login-btn" type="submit">
+          <button className="review-btn" type="submit">
             Submit
           </button>
         </form>

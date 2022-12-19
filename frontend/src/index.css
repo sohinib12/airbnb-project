@@ -7,6 +7,13 @@
     font-family: 'Plus Jakarta Sans', 'Montserrat Alternates', 'Open Sans', 'Arimo', 'Roboto', sans-serif;
     font-weight: 300;
 } */
+.title{
+    font-size: 2em;
+    font-style: italic;
+    font-weight: 800;
+    font-family: cursive;
+    color: #FF2E00;
+}
 h1 {
     text-align: center;
 }
@@ -27,4 +34,10 @@ select:focus {
     justify-content: center;
     align-items: center;
     max-width: 1760px;
+}
+.error-li{
+    color: red;
+    font-size: .80rem;
+    margin: 10px 0px;
+
 }

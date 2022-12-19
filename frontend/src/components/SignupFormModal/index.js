@@ -47,7 +47,7 @@ function SignupFormModal() {
         <h1 className="welcome-signUp">Welcome to Yawnbnb</h1>
         <form className="form-container" onSubmit={handleSubmit}>
           {errors.length > 0 && (
-            <ul>
+            <ul className="error-li">
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}

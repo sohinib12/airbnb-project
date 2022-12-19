@@ -37,7 +37,7 @@ function LoginFormModal() {
         <h1 className="welcome-login">Welcome to Yawnbnb</h1>
         <form className="form-container" onSubmit={handleSubmit}>
           {errors.length > 0 && (
-            <ul>
+            <ul className="error-li">
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
@@ -60,7 +60,7 @@ function LoginFormModal() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="login-input"
-              
+
             />
           </div>
           <button className="login-btn" type="submit">

@@ -31,11 +31,11 @@ function ProfileButton({ user, handleLogin, handleSignup, demoUser }) {
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (
-        <ul className="list--profile-dropdown">
+        <ul className="list-profile-dropdown">
           {!login_user ? (
             <>
               <li
-                className="button--dropdown-item button--dropdown-item-user-data"
+                className="button-dropdown-item"
                 onClick={(e) => {
                   closeMenu();
                   handleLogin(e);
@@ -44,7 +44,7 @@ function ProfileButton({ user, handleLogin, handleSignup, demoUser }) {
                 Log in
               </li>
               <li
-                className="button--dropdown-item button--dropdown-item-user-data"
+                className="button-dropdown-item"
                 onClick={(e) => {
                   closeMenu();
                   handleSignup(e);
@@ -53,7 +53,7 @@ function ProfileButton({ user, handleLogin, handleSignup, demoUser }) {
                 Sign Up
               </li>
               <li
-                className="button--dropdown-item button--dropdown-item-user-data"
+                className="button-dropdown-item"
                 onClick={(e) => {
                   closeMenu();
                   demoUser(e);
@@ -66,7 +66,7 @@ function ProfileButton({ user, handleLogin, handleSignup, demoUser }) {
             <div>
               <div className="login-user">Logged in : {login_user.username}</div>
               <li
-                className="button--dropdown-item button--dropdown-item-user-data"
+                className="button-dropdown-item"
                 onClick={(e) => {
                   closeMenu();
                   logout(e);

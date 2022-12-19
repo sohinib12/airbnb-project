@@ -61,12 +61,6 @@ export default function AddReview({ spotId, handleAddReview }) {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
-        {/* <input
-          placeholder="Enter Rating"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-          className="add-rating-input"
-        ></input> */}
         <button className="add-review-btn" type="submit">
           Submit
         </button>

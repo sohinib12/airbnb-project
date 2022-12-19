@@ -1,31 +1,5 @@
-.image-div-one-spot{
-    width: 50vw;
-    height: 50vh;
-}
-.spot-secondary-images-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    height: 50vh;
-}
+/* spot details */
 
-.spot-images{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    height: 50vh;
-    margin-top: 12px;
-}
-
-.spot-secondary-image{
-    /* width: 20vw;
-    height: 25vh; */
-    width: 100%;
-}
-.spot-secondary-image.first{
-    grid-column: 1/3;
-    grid-row: 1/3;
-}
 .spot-details{
     padding: 0px 32px;
     display: flex;
@@ -49,6 +23,41 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+    align-items: center;
+}
+.spot-edit-delete-button:hover {
+    cursor: pointer;
+}
+
+/* spot images */
+.spot-images-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 4px;
+    max-height: 560px;
+    overflow: hidden;
+}
+
+.spot-secondary-image{
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+.spot-secondary-image.first{
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+/* host details */
+
+.flex{
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+.host-details-spot-info{
+    width: 70%;
 }
 .bed-bath-details{
     font-size: 16px;
@@ -56,35 +65,8 @@
     font-weight: normal;
     opacity: 0.6;
    }
-.aircover-title-image img{
-    width: 200px;
-    padding: 30px;
-    padding-left:0px;
-}
-.aircover-info{
-    padding-bottom: 30px;
-    font-weight: normal;
-    /* border-bottom: 1px solid rgb(224, 216, 216); */
-}
-.price-rating-side-box {
-    display: flex;
-    align-self: flex-end;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px;
-    margin: 0px 0px 10px 10px;
-    height: 100px;
-    border-radius: 20px;
-    box-shadow: 2px 2px 2px 2px rgba(90, 88, 88, 0.2);
-    text-align: center;
-    position: sticky;
-    top: 80px;
 
-}
-
-.spot-details-rating {
-    padding: 20px;
-}
+/* amenities */
 
 .location-container,
 .checkin-container,
@@ -127,43 +109,79 @@
 .airbnb-amenities-info-image{
     width: 60px;
 }
-.spot-edit-delete-button:hover {
-    cursor: pointer;
-}
-.flex{
-    display: flex;
-    gap: 16px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-}
 
-.host-details-spot-info{
-    width: 70%;
+/* air-cover */
+
+.aircover-title-image img{
+    width: 200px;
+    padding: 30px;
+    padding-left:0px;
 }
-.host-info{
-    width: 30%
-}
-hr{
-    color: #ddd;
-    margin: 16px 0px;
+.aircover-info{
+    padding-bottom: 30px;
+    font-weight: normal;
     /* border-bottom: 1px solid rgb(224, 216, 216); */
 }
-.spot-images-container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 4px;
-    max-height: 560px;
+
+/* spot price & numOfReviews container */
+
+.price-rating-side-box {
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    margin: 0px 0px 10px 10px;
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px rgba(90, 88, 88, 0.2);
+    text-align: center;
+    position: sticky;
+    top: 80px;
+
 }
+.spot-details-rating {
+    padding: 20px;
+}
+
+/* reviews */
+
 .review-title{
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
 }
-.fa-star {
+.rating-color {
+    color: #e99824
+}
+.enter-review-btn{
+    background: linear-gradient(45deg,#ff5a5f,#e31c5f 30%);
+    font-weight: 500;
+    padding: 15px;
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+hr{
+    color: #ddd;
+    margin: 16px 0px;
+    /* border-bottom: 1px solid rgb(224, 216, 216); */
+}
+
+.star-icon {
     font-size: 1.3rem;
     font-weight: 600;
     margin: 0 4px;
 }
+/* .image-div-one-spot{
+    width: 50vw;
+    height: 50vh;
+} */
 
+.host-info{
+    width: 30%
+}

@@ -52,7 +52,7 @@ export default function SpotDetails() {
       <div className="address-spot">
         <div className="address-details">
           <div id="rating-above-picture">
-            <i className="fas fa-star"></i> {spot.avgStarRating}
+            <i className="fas fa-star star-icon"></i> {spot.avgStarRating}
           </div>
           <div>{spot.numReviews} reviews</div>
           <div>{spot.reviews}</div>
@@ -67,15 +67,12 @@ export default function SpotDetails() {
               onClick={(e) => handleEdit(e)}
               className="spot-edit-delete-button"
             >
-              {/* <i className="fas fa-edit"></i> */}
               <i class="fa-solid fa-user-pen"></i>
             </button>
             <button
               onClick={(e) => handleDelete(e)}
               className="spot-edit-delete-button"
             >
-              {/* <i className="fas fa-trash"></i> */}
-              {/* <i className="fa-solid fa-trash-can-check"></i> */}
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
@@ -113,15 +110,9 @@ export default function SpotDetails() {
                 <span> 2 bath</span>
               </div>
             </div>
-            {/* <div className="host-info">
-              <div className="owner-pic">
-                <i class="fa-solid fa-user"></i>
-              </div>
-            </div> */}
           </div>
           <div className="location-container">
             <div className="airbnb-amenities-info-image">
-              {/* <i className="fa-solid fa-location-dot"></i> */}
               <i className="fa-solid fa-medal"></i>
             </div>
             <div className="location-info">
@@ -188,8 +179,8 @@ export default function SpotDetails() {
           <h3>
             {spot.avgStarRating ? Number(spot.avgStarRating).toFixed(1) : ""}
           </h3>
-          <h3> - {spot.numReviews} reviews</h3>
-          {user && <button onClick={handleAddReview}>Enter a Review</button>}
+          <h3> - {spot.numReviews} Reviews</h3>
+          {user && <button className="enter-review-btn" onClick={handleAddReview}>Enter a Review</button>}
         </div>
 
         <Reviews spotId={spotId} handleUpdateReviews={handleUpdateReviews} />

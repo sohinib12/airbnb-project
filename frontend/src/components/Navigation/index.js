@@ -32,11 +32,7 @@ function Navigation({ isLoaded }) {
 
   const createSpot = (e) => {
     e.preventDefault();
-    if (!sessionUser) {
-      alert("log in to create a spot!");
-    } else {
       history.push("/spots/create");
-    }
   };
 
   console.log(sessionUser);

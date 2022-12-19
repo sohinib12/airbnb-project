@@ -76,7 +76,7 @@ export default function CreateSpot() {
       <h1 className="welcome-container">Host your Experience</h1>
       <div className="create-spot-root">
         <div id="host-forms">
-          <ul>
+          <ul className="error-li">
             {errorValidations.map((error) => (
               <li key={error}>{error}</li>
             ))}
@@ -133,10 +133,12 @@ export default function CreateSpot() {
                 onChange={(e) => setPrice(e.target.value)}
                 className="create-spot-input"
                 type="number"
+                min="1"
+                max="50000"
               />
 
               <input
-                type="text"
+                type="url"
                 placeholder="Image url"
                 value={imageUrl}
                 onChange={(e) => {

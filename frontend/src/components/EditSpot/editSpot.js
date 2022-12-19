@@ -86,7 +86,7 @@ export default function EditSpot() {
       <div id="host-forms">
         {handleSubmit && errorValidations.length > 0 && (
           <div>
-            <ul>
+            <ul className="error-li">
               {errorValidations.map((error) => (
                 <li key={error}>{error}</li>
               ))}
@@ -144,6 +144,8 @@ export default function EditSpot() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             className="edit-input"
+            min="1"
+            max="50000"
           />
 
           <input

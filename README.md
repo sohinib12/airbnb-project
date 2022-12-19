@@ -4,7 +4,7 @@
 ***
 Yawnbnb is a website inspired by Airbnb, that provides an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities.
 
-* click here for the live [Yawnbnb]() project
+* click here for the live [Yawnbnb](https://airbnb-sohini.onrender.com) project
 --------------------------------------------------------
 ## list of technologies used on this project
 
@@ -20,4 +20,4 @@ Yawnbnb is a website inspired by Airbnb, that provides an online marketplace for
 
 --------------------------------------------------------------
 Basic features
-![homePage]("../Screenshot 2022-12-18 at 11.54.42 PM.png")
+![homePage](../Screenshot 2022-12-18 at 11.54.42 PM.png)
